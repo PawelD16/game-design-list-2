@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
     public const float JUMP_THRESHHOLD = 0.001f;
 
     public const string PLAYER_TAG = "Player";
-    public const string RESTING_ANIMATION_NAME = "RestingAnim";
-    public const string MOVEMENT_ANIMATION_NAME = "MovementAnimation";
-    public const string JUMP_ANIMATION_NAME = "JumpAnimation";
+    // public const string RESTING_ANIMATION_NAME = "RestingAnim";
+    // public const string MOVEMENT_ANIMATION_NAME = "MovementAnimation";
+    // public const string JUMP_ANIMATION_NAME = "JumpAnimation";
 
     private int _healthPoints = MAX_HEALTH_POINTS;
     private Vector2 currentMovementInput;
@@ -71,45 +71,42 @@ public class Player : MonoBehaviour
     private void Update()
     {
         DecidePlayerMovement();
-        DecideCurrentAnimation();
+        // DecideCurrentAnimation();
     }
 
     private void DecidePlayerMovement()
     {
-        AddHorizontalMovement(currentMovementInput.x);
-        AddVerticalMovement(currentMovementInput.y);
+        bool moveX = AddHorizontalMovement(currentMovementInput.x);
+        bool moveY = AddVerticalMovement(currentMovementInput.y);
+
+        animator.SetBool("isMovingX", moveX);
+        animator.SetBool("isMovingY", moveY);
     }
 
-    private void DecideCurrentAnimation()
-    {
-        if (playerRigidBody.velocity.x == 0 && playerRigidBody.velocity.y == 0)
-            animator.Play(RESTING_ANIMATION_NAME);
-        else if (playerRigidBody.velocity.x != 0 && playerRigidBody.velocity.y == 0)
-            animator.Play(MOVEMENT_ANIMATION_NAME);
-        else
-            animator.Play(JUMP_ANIMATION_NAME);
-    }
-
-    public void AddHorizontalMovement(float moveX)
+    public bool AddHorizontalMovement(float moveX)
     {
         playerRigidBody.velocity = new Vector2(moveX * SPEED, playerRigidBody.velocity.y);
+
+        return moveX != 0;
     }
 
-    public void AddVerticalMovement(float moveY)
+    public bool AddVerticalMovement(float moveY)
     {
         if (moveY > 0 && Mathf.Abs(playerRigidBody.velocity.y) < JUMP_THRESHHOLD)
             playerRigidBody.AddForce(new Vector2(0, JUMP_FORCE), ForceMode2D.Impulse);
         else if (moveY < 0)
             playerRigidBody.velocity = Vector2.zero;
+
+        return moveY != 0;
     }
 
-    public void MovementAnimation()
+    public void MovementSound()
     {
         if (!audioSource.isPlaying)
             audioSource.Play();
     }
 
-    public void IdleAnimation()
+    public void IdleStopSound()
     {
         if (audioSource.isPlaying)
             audioSource.Stop();

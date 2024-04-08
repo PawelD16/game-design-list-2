@@ -274,6 +274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 252611744}
+  cameraOffsetX: 0
+  cameraOffsetY: 1
+  cameraOffsetZ: 5
 --- !u!1001 &252611743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,6 +444,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1119144463467862535, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1237171
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119144463467862535, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.061858952
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119144463467862535, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4404617934102147420, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
       propertyPath: m_Name
       value: Static platform (1)
@@ -448,13 +463,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4404617934102147420, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 419937651}
   m_SourcePrefab: {fileID: 100100000, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
 --- !u!4 &419937649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1039122444379011491, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
   m_PrefabInstance: {fileID: 419937648}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &419937650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4404617934102147420, guid: f6bd02f7abfda6248b0fd7b02d714314, type: 3}
+  m_PrefabInstance: {fileID: 419937648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!252 &419937651
+SurfaceEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419937650}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Speed: 1000
+  m_SpeedVariation: 0
+  m_ForceScale: 1
+  m_UseContactForce: 1
+  m_UseFriction: 1
+  m_UseBounce: 1
 --- !u!1001 &439335774
 PrefabInstance:
   m_ObjectHideFlags: 0
